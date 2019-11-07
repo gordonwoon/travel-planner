@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import { withRouter } from 'react-router-dom';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -115,7 +116,7 @@ const NavigationBar = props => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Mini variant drawer
+            {routes[props.location.pathname]}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -154,4 +155,4 @@ const NavigationBar = props => {
   );
 }
 
-export default NavigationBar
+export default withRouter(NavigationBar)

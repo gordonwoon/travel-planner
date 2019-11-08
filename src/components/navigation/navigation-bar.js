@@ -2,16 +2,8 @@ import React from 'react';
 import clsx from 'clsx';
 import { withRouter } from 'react-router-dom';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { Drawer, AppBar, Toolbar, List, Typography, Divider, IconButton } from '@material-ui/core';
+import { Menu, ChevronLeft, ChevronRight } from '@material-ui/icons';
 import { NavigationLink } from './';
 
 const drawerWidth = 240;
@@ -113,7 +105,7 @@ const NavigationBar = props => {
               [classes.hide]: open,
             })}
           >
-            <MenuIcon />
+            <Menu />
           </IconButton>
           <Typography variant="h6" noWrap>
             {routes[props.location.pathname]}
@@ -136,7 +128,7 @@ const NavigationBar = props => {
       >
         <div className={classes.toolbar}>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {theme.direction === 'rtl' ? <ChevronRight /> : <ChevronLeft />}
           </IconButton>
         </div>
         <Divider />

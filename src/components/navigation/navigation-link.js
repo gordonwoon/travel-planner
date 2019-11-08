@@ -1,11 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import Icon from '@material-ui/core/Icon';
+import { ListItem, ListItemIcon, ListItemText, Icon } from '@material-ui/core';
+import { ExpandLess, ExpandMore } from '@material-ui/icons';
 import { red } from '@material-ui/core/colors';
 import { Link as RouterLink } from 'react-router-dom';
 

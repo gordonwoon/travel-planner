@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Grid, Fab, Icon } from '@material-ui/core';
-import { DashboardItem } from './';
+import { DashboardItem, DashboardModal } from './';
 
 const data = [
   { primary: 'Finland', secondary: '13-5-19' },
@@ -21,6 +21,16 @@ const styles = theme => ({
 });
 
 class DashboardContainer extends Component {
+  state = {
+    open: false
+  }
+  handleOpen = () => {
+    this.setState({ open: true })
+  }
+
+  handleClose = () => {
+    this.setState({ open: false })
+  }
   render() {
     const { classes } = this.props;
     return (
@@ -30,9 +40,13 @@ class DashboardContainer extends Component {
             <DashboardItem {...item} />
           </Grid>
         ))}
-        <Fab color="secondary" className={classes.addButton}>
+        <Fab color="secondary" className={classes.addButton} onClick={this.handleOpen}>
           <Icon>add</Icon>
         </Fab>
+        <DashboardModal
+          open={this.state.open}
+          handleClose={this.handleClose}
+        />
       </Grid>
     )
   }

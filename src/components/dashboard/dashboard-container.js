@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
+import { Grid } from '@material-ui/core';
 import { DashboardItem } from './';
 
 const data = [
-  { primary: 'Finland', secondary: '13-5-19', content: 'Dog Sledding' },
-  { primary: 'Amsterdam', secondary: '13-5-19', content: 'Bicycles' },
-  { primary: 'London', secondary: '13-5-19', content: 'Big Ben' }
+  { primary: 'Finland', secondary: '13-5-19' },
+  { primary: 'Amsterdam', secondary: '13-5-19' },
+  { primary: 'London', secondary: '13-5-19' }
 ]
 
 const styles = theme => ({
@@ -19,13 +19,13 @@ class DashboardContainer extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
-        <List className={classes.root}>
-          {data.map(item => (
+      <Grid className={classes.root} container spacing={2} >
+        {data.map((item, key) => (
+          <Grid item xs={6} key={key} >
             <DashboardItem {...item} />
-          ))}
-        </List>
-      </div>
+          </Grid>
+        ))}
+      </Grid>
     )
   }
 }

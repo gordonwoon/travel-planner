@@ -5,6 +5,14 @@ import { Card, CardMedia, CardContent, Typography } from '@material-ui/core';
 const useStyles = makeStyles(theme => ({
   card: {
     display: 'flex'
+  },
+  media: {
+    height: '250px',
+    width: '400px'
+  },
+  content: {
+    width: '100%',
+    textAlign: 'center'
   }
 }));
 
@@ -14,14 +22,14 @@ const DashboardItem = ({ primary, secondary }) => {
   return (
     <Card className={classes.card}>
       <CardMedia
+        className={classes.media}
         component="img"
         alt="Travel"
-        height="250"
         image="https://via.placeholder.com/400x250"
         title="Travel"
       />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="h2">
+      <CardContent className={classes.content}>
+        <Typography gutterBottom variant="h5" component="h5">
           {primary}
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">

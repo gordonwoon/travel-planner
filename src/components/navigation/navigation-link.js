@@ -9,8 +9,8 @@ const useStyles = makeStyles(theme => ({
   iconHover: {
     '&:hover': {
       color: red[800],
-    },
-  },
+    }
+  }
 }));
 
 const NavigationLink = props => {

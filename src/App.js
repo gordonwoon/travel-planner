@@ -13,6 +13,7 @@ import Planner from './components/planner';
 
 const client = new ApolloClient({
   uri: 'http://travelplannerservereb-env.ynnyx3isx3.ap-southeast-1.elasticbeanstalk.com/graphql',
+  dataIdFromObject: o => o.id
 });
 
 const App = () => {

@@ -3,16 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Fab, Icon } from '@material-ui/core';
 import { DashboardItem, DashboardModal } from './';
 import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
-
-const FETCH_DESTINATIONS = gql`
-  {
-    destinations {
-      id
-      name
-    }
-  }
-`;
+import FETCH_DESTINATIONS from '../../queries/fetch-destinations';
 
 const useStyles = makeStyles(theme => ({
   root: {

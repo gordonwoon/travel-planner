@@ -1,15 +1,20 @@
-import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Fab, Icon } from '@material-ui/core';
 import { DashboardItem, DashboardModal } from './';
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 
-const data = [
-  { primary: 'Finland', secondary: '13-5-19' },
-  { primary: 'Amsterdam', secondary: '13-5-19' },
-  { primary: 'London', secondary: '13-5-19' }
-]
+const FETCH_DESTINATIONS = gql`
+  {
+    destinations {
+      id
+      name
+    }
+  }
+`;
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%'
   },
@@ -18,38 +23,42 @@ const styles = theme => ({
     bottom: '15px',
     right: '15px',
   }
-});
+}));
 
-class DashboardContainer extends Component {
-  state = {
-    open: false
-  }
-  handleOpen = () => {
-    this.setState({ open: true })
-  }
+const defaultState = {
+  open: false
+}
 
-  handleClose = () => {
-    this.setState({ open: false })
+const DashboardContainer = props => {
+  const classes = useStyles();
+  const [state, setState] = React.useState(defaultState);
+  const { loading, error, data } = useQuery(FETCH_DESTINATIONS);
+  const handleOpen = () => {
+    setState({ open: true })
   }
-  render() {
-    const { classes } = this.props;
-    return (
+  const handleClose = () => {
+    setState({ open: false })
+  }
+  if (loading) return 'Loading...';
+  if (error) return `Error! ${error.message}`;
+  return (
       <Grid className={classes.root} container spacing={2} >
-        {data.map((item, key) => (
+        {data && data.destinations.map((item, key) => (
           <Grid item xs={12} md={6} key={key} >
-            <DashboardItem {...item} />
+            <DashboardItem
+              primary={item.name}
+            />
           </Grid>
         ))}
-        <Fab color="secondary" className={classes.addButton} onClick={this.handleOpen}>
+        <Fab color="secondary" className={classes.addButton} onClick={handleOpen}>
           <Icon>add</Icon>
         </Fab>
         <DashboardModal
-          open={this.state.open}
-          handleClose={this.handleClose}
+          open={state.open}
+          handleClose={handleClose}
         />
       </Grid>
-    )
-  }
+  );
 }
 
-export default withStyles(styles)(DashboardContainer);
+export default DashboardContainer;

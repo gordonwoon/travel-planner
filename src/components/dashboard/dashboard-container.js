@@ -34,9 +34,10 @@ const DashboardContainer = props => {
   if (error) return `Error! ${error.message}`;
   return (
       <Grid className={classes.root} container spacing={2} >
-        {data && data.destinations.map((item, key) => (
+        {data.destinations && data.destinations.map((item, key) => (
           <Grid item xs={12} md={6} key={key} >
             <DashboardItem
+              id={item.id}
               primary={item.name}
             />
           </Grid>

@@ -11,9 +11,10 @@ import Navigation from './components/navigation';
 import Dashboard from './components/dashboard';
 import Planner from './components/planner';
 
+import keys from './config/keys';
+
 const client = new ApolloClient({
-  uri: 'http://travelplannerservereb-env.ynnyx3isx3.ap-southeast-1.elasticbeanstalk.com/graphql',
-  dataIdFromObject: o => o.id
+  uri: `${keys.serverURL}/graphql`
 });
 
 const App = () => {
@@ -23,7 +24,7 @@ const App = () => {
         <Navigation>
           <Switch>
             <Route exact path="/" component={Dashboard} />
-            <Route path="/planner" component={Planner} />
+            <Route path="/planner/:id" component={Planner} />
           </Switch>
         </Navigation>
       </Router>

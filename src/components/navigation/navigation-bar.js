@@ -70,8 +70,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const routes = {
-  '/': 'Dashboard',
-  '/planner': 'Planner',
+  '/': 'Dashboard'
 };
 
 const NavigationBar = props => {

@@ -1,10 +1,12 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardMedia, CardContent, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   card: {
-    display: 'flex'
+    display: 'flex',
+    cursor: 'pointer'
   },
   media: {
     height: '250px',
@@ -16,11 +18,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const DashboardItem = ({ primary, secondary }) => {
+const DashboardItem = ({ id, primary, secondary, history }) => {
   const classes = useStyles();
+  const handleClick = () => {
+    history.push(`/planner/${id}`)
+  }
 
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} onClick={handleClick}>
       <CardMedia
         className={classes.media}
         component="img"
@@ -40,4 +45,4 @@ const DashboardItem = ({ primary, secondary }) => {
   );
 }
 
-export default DashboardItem;
+export default withRouter(DashboardItem);

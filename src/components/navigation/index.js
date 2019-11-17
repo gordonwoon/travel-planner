@@ -1,2 +1,2 @@
 export { default } from './navigation-bar';
-export { default as NavigationLink } from './navigation-link';
+export { default as NavigationList } from './navigation-list';

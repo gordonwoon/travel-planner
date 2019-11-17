@@ -1,41 +1,56 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import { useQuery } from '@apollo/react-hooks';
-import { Grid, Typography } from '@material-ui/core';
+import { Divider, Fab, Icon } from '@material-ui/core';
 import FETCH_DESTINATION from '../../queries/fetch-destination';
-import keys from '../../config/keys';
-import googleMaps from '@google/maps';
+import { PlannerDetail, PlannerList, PlannerModal } from './'
 
+const useStyles = makeStyles(theme => ({
+  addButton: {
+    position: 'fixed',
+    bottom: '15px',
+    right: '15px',
+  }
+}));
+
+const defaultState = {
+  open: false
+}
 
 const PlannerContainer = ({ match }) => {
+  const classes = useStyles();
   const id = match.params.id;
+  const [state, setState] = React.useState(defaultState);
   const { loading, error, data } = useQuery(FETCH_DESTINATION, {
     variables: { id }
   });
-  const googleMapsClient = googleMaps.createClient({
-    key: keys.googleAPIKey
-  })
-  const fetchPlace = async () => {
-    googleMapsClient.places({
-      query: data.destination && data.destination.name
-    }, (err, res) => console.log(res));
+  const handleOpen = () => {
+    setState({ open: true })
+  }
+  const handleClose = () => {
+    setState({ open: false })
   }
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
-  fetchPlace();
   return (
-    <Grid container>
-      <Grid item xs={6}>
-        <Typography variant="h5" component="h5">{data.destination && data.destination.name}</Typography>
-      </Grid>
-      <Grid item xs={6}>
-        <iframe
-          width="600"
-          height="450"
-          frameBorder="0"
-          src={`https://www.google.com/maps/embed/v1/place?key=${keys.googleAPIKey}&q=Space+Needle,Seattle+WA`} allowFullScreen>
-        </iframe>
-      </Grid>
-    </Grid>
+    <div>
+      <PlannerDetail
+        name={data.destination && data.destination.name}
+      />
+      <Divider />
+      <PlannerList
+        id={data.destination && data.destination.id}
+        places={data.destination && data.destination.places}
+      />
+      <Fab color="secondary" className={classes.addButton} onClick={handleOpen}>
+        <Icon>add</Icon>
+      </Fab>
+      <PlannerModal
+        open={state.open}
+        handleClose={handleClose}
+        id={data.destination && data.destination.id}
+      />
+    </div>
   )
 }
 

@@ -7,7 +7,9 @@ query destinationQuery ($id: ID!) {
     name
     places {
       id
+      place_id
       name
+      address
       from_date
       to_date
       expense

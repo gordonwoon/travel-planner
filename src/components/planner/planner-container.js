@@ -36,6 +36,7 @@ const PlannerContainer = ({ match }) => {
     <div>
       <PlannerDetail
         name={data.destination && data.destination.name}
+        places={data.destination && data.destination.places}
       />
       <Divider />
       <PlannerList

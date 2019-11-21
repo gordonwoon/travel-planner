@@ -112,7 +112,7 @@ const PlannerModal = ({ open, handleClose, id }) => {
               </Box>
               <Box p={1} display="flex" flexDirection="column">
                 {!loading && place.geometry &&
-                  <GoogleMap
+                  <GoogleMap.Place
                     title={name}
                     width={400}
                     height={400}

@@ -6,7 +6,7 @@ const PlannerList = props => {
   return (
     <List>
       {places.map(place => (
-        <ListItem>
+        <ListItem key={place.id}>
           <ListItemText primary={place.name} />
           <ListItemText secondary={place.address} />
         </ListItem>

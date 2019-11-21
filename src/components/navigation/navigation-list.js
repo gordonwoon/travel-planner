@@ -20,7 +20,7 @@ const NavigationList = props => {
   return (
     <List>
       {Object.entries(routes).map(([to, primary]) => (
-        <ListItem button component={RouterLink} to={to} {...other}>
+        <ListItem key={to} button component={RouterLink} to={to} {...other}>
           <ListItemIcon>
             <Icon className={classes.iconHover} style={{ fontSize: 30 }}>
               {primary}

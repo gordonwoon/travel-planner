@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import { withRouter } from 'react-router-dom';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { Drawer, AppBar, Toolbar, List, Typography, Divider, IconButton } from '@material-ui/core';
+import { Drawer, AppBar, Toolbar, Typography, Divider, IconButton } from '@material-ui/core';
 import { Menu, ChevronLeft, ChevronRight } from '@material-ui/icons';
 import { NavigationList } from './';
 

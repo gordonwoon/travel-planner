@@ -30,7 +30,7 @@ const defaultState = {
 const DashboardModal = ({ open, handleClose }) => {
   const classes = useStyles();
   const [state, setState] = React.useState(defaultState);
-  const [addDestination, { data }] = useMutation(ADD_DESTINATION);
+  const [addDestination] = useMutation(ADD_DESTINATION);
   const handleChange = e => {
     setState({ name: e.target.value })
   }

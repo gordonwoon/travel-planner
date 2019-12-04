@@ -28,7 +28,7 @@ const PlannerModal = ({ open, handleClose, id }) => {
   const [address, setAddress] = React.useState('');
   const [loading, setLoading] = React.useState(false);
   const [place, setPlace] = React.useState({});
-  const [addPlace, { data }] = useMutation(ADD_PLACE);
+  const [addPlace] = useMutation(ADD_PLACE);
   const handleChange = e => {
     setName(e.target.value)
   }
@@ -61,7 +61,7 @@ const PlannerModal = ({ open, handleClose, id }) => {
   React.useEffect(() => {
     fetchPlaces(name);
     setLoading(true);
-  }, [name])
+  }, [name]) // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <Modal
       className={classes.modal}

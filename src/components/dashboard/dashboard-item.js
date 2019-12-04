@@ -1,16 +1,13 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardMedia, CardContent, Typography } from '@material-ui/core';
+import { Card, CardContent, Typography } from '@material-ui/core';
+import { GoogleMap } from '../google';
 
 const useStyles = makeStyles(theme => ({
   card: {
     display: 'flex',
     cursor: 'pointer'
-  },
-  media: {
-    height: '250px',
-    width: '400px'
   },
   content: {
     width: '100%',
@@ -18,27 +15,41 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const DashboardItem = ({ id, primary, secondary, history }) => {
+const DashboardItem = ({ id, name, content, history, places }) => {
   const classes = useStyles();
   const handleClick = () => {
     history.push(`/planner/${id}`)
   }
+  const renderMap = () => {
+    if (places.length) {
+      const origin = places[0].name
+      const waypoints = places.length > 2 ? places.slice(1, -1).reduce((acc, place) => `${acc}|${place.place_id || place.address || place.name}`) : [];
+      const destination = places[places.length-1].name;
+      return (
+        <GoogleMap.Directions
+          title={name}
+          queries={{ origin, waypoints, destination }}
+        />
+      )
+    } else {
+      return (
+        <GoogleMap.Place
+          title={name}
+          queries={{ q: name }}
+        />
+      )
+    }
+  }
 
   return (
     <Card className={classes.card} onClick={handleClick}>
-      <CardMedia
-        className={classes.media}
-        component="img"
-        alt="Travel"
-        image="https://via.placeholder.com/400x250"
-        title="Travel"
-      />
+      {renderMap()}
       <CardContent className={classes.content}>
         <Typography gutterBottom variant="h5" component="h5">
-          {primary}
+          {name}
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-          {secondary}
+          {content}
         </Typography>
       </CardContent>
     </Card>

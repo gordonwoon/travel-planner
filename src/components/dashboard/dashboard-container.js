@@ -38,7 +38,8 @@ const DashboardContainer = props => {
           <Grid item xs={12} md={6} key={key} >
             <DashboardItem
               id={item.id}
-              primary={item.name}
+              name={item.name}
+              places={item.places}
             />
           </Grid>
         ))}

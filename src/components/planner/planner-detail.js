@@ -11,6 +11,7 @@ const useStyles = makeStyles(theme => ({
 
 const PlannerDetail = ({ name, places }) => {
   const classes = useStyles();
+  const totalExpense = places.reduce((acc, place) => acc + (place.expense || 0), 0);
   const renderMap = () => {
     if (places.length) {
       const origin = places[0].name
@@ -40,6 +41,7 @@ const PlannerDetail = ({ name, places }) => {
       >
         <Box>
           <Typography variant="h5" component="h5">{name}</Typography>
+          <Typography variant="h6" component="h6">{`Total expense: ${totalExpense}`}</Typography>
         </Box>
         <Box>
           {renderMap()}

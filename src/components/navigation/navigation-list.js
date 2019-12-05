@@ -6,7 +6,11 @@ import { red } from '@material-ui/core/colors';
 import { Link as RouterLink } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
+  item: {
+    color: 'white'
+  },
   iconHover: {
+    color: 'white',
     '&:hover': {
       color: red[800],
     }
@@ -20,7 +24,7 @@ const NavigationList = props => {
   return (
     <List>
       {Object.entries(routes).map(([to, primary]) => (
-        <ListItem key={to} button component={RouterLink} to={to} {...other}>
+        <ListItem className={classes.item} key={to} button component={RouterLink} to={to} {...other}>
           <ListItemIcon>
             <Icon className={classes.iconHover} style={{ fontSize: 30 }}>
               {primary}

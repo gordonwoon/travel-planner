@@ -1,25 +1,17 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { Box, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardContent, Typography } from '@material-ui/core';
 import { GoogleMap } from '../google';
 
 const useStyles = makeStyles(theme => ({
-  card: {
-    display: 'flex',
-    cursor: 'pointer'
-  },
-  content: {
-    width: '100%',
-    textAlign: 'center'
+  container: {
+    height: '300px'
   }
 }));
 
-const DashboardItem = ({ id, name, content, history, places }) => {
+const PlacesDetail = ({ name, places }) => {
   const classes = useStyles();
-  const handleClick = () => {
-    history.push(`/planner/${id}`)
-  }
+  const totalExpense = places.reduce((acc, place) => acc + (place.expense || 0), 0);
   const renderMap = () => {
     if (places.length) {
       const origin = places[0].name
@@ -40,20 +32,23 @@ const DashboardItem = ({ id, name, content, history, places }) => {
       )
     }
   }
-
   return (
-    <Card className={classes.card} onClick={handleClick}>
-      {renderMap()}
-      <CardContent className={classes.content}>
-        <Typography gutterBottom variant="h5" component="h5">
-          {name}
-        </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {content}
-        </Typography>
-      </CardContent>
-    </Card>
+    <div className={classes.container}>
+      <Box
+        display="flex"
+        alignItems="flex-start"
+        justifyContent="space-between"
+      >
+        <Box>
+          <Typography variant="h5" component="h5">{name}</Typography>
+          <Typography variant="h6" component="h6">{`Total expense: ${totalExpense}`}</Typography>
+        </Box>
+        <Box>
+          {renderMap()}
+        </Box>
+      </Box>
+    </div>
   );
 }
 
-export default withRouter(DashboardItem);
+export default PlacesDetail;

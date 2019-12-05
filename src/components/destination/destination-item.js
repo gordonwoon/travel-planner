@@ -1,17 +1,25 @@
 import React from 'react';
-import { Box, Typography } from '@material-ui/core';
+import { withRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
+import { Card, CardContent, Typography } from '@material-ui/core';
 import { GoogleMap } from '../google';
 
 const useStyles = makeStyles(theme => ({
-  container: {
-    height: '300px'
+  card: {
+    display: 'flex',
+    cursor: 'pointer'
+  },
+  content: {
+    width: '100%',
+    textAlign: 'center'
   }
 }));
 
-const PlannerDetail = ({ name, places }) => {
+const DestinationItem = ({ id, name, content, history, places }) => {
   const classes = useStyles();
-  const totalExpense = places.reduce((acc, place) => acc + (place.expense || 0), 0);
+  const handleClick = () => {
+    history.push(`/places/${id}`)
+  }
   const renderMap = () => {
     if (places.length) {
       const origin = places[0].name
@@ -32,23 +40,20 @@ const PlannerDetail = ({ name, places }) => {
       )
     }
   }
+
   return (
-    <div className={classes.container}>
-      <Box
-        display="flex"
-        alignItems="flex-start"
-        justifyContent="space-between"
-      >
-        <Box>
-          <Typography variant="h5" component="h5">{name}</Typography>
-          <Typography variant="h6" component="h6">{`Total expense: ${totalExpense}`}</Typography>
-        </Box>
-        <Box>
-          {renderMap()}
-        </Box>
-      </Box>
-    </div>
+    <Card className={classes.card} onClick={handleClick}>
+      {renderMap()}
+      <CardContent className={classes.content}>
+        <Typography gutterBottom variant="h5" component="h5">
+          {name}
+        </Typography>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {content}
+        </Typography>
+      </CardContent>
+    </Card>
   );
 }
 
-export default PlannerDetail;
+export default withRouter(DestinationItem);

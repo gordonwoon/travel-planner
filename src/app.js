@@ -8,8 +8,8 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 import Navigation from './components/navigation';
-import Dashboard from './components/dashboard';
-import Planner from './components/planner';
+import Destination from './components/destination';
+import Places from './components/places';
 
 import keys from './config/keys';
 
@@ -23,8 +23,8 @@ const App = () => {
       <Router>
         <Navigation>
           <Switch>
-            <Route exact path="/" component={Dashboard} />
-            <Route path="/planner/:id" component={Planner} />
+            <Route exact path="/" component={Destination} />
+            <Route path="/places/:id" component={Places} />
           </Switch>
         </Navigation>
       </Router>

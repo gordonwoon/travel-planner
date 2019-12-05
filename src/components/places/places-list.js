@@ -1,7 +1,7 @@
 import React from 'react';
 import { List, ListItem, ListItemText } from '@material-ui/core';
 
-const PlannerList = props => {
+const PlacesList = props => {
   const { places } = props;
   return (
     <List>
@@ -15,4 +15,4 @@ const PlannerList = props => {
   );
 }
 
-export default PlannerList
+export default PlacesList

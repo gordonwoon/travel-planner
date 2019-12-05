@@ -27,7 +27,7 @@ const defaultState = {
   name: ''
 }
 
-const DashboardModal = ({ open, handleClose }) => {
+const DestinationModal = ({ open, handleClose }) => {
   const classes = useStyles();
   const [state, setState] = React.useState(defaultState);
   const [addDestination] = useMutation(ADD_DESTINATION);
@@ -80,4 +80,4 @@ const DashboardModal = ({ open, handleClose }) => {
   );
 }
 
-export default DashboardModal;
+export default DestinationModal;

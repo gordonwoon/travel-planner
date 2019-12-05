@@ -5,14 +5,19 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Drawer, AppBar, Toolbar, Typography, Divider, IconButton } from '@material-ui/core';
 import { Menu, ChevronLeft, ChevronRight } from '@material-ui/icons';
 import { NavigationList } from './';
+import Background from '../../assets/path.jpg'
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
   root: {
+    width: '100vw',
+    height: '100vh',
+    overflow: 'hidden',
     display: 'flex',
   },
   appBar: {
+    backgroundImage: 'linear-gradient(to bottom right, black, #674113)',
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -39,6 +44,7 @@ const useStyles = makeStyles(theme => ({
     whiteSpace: 'nowrap',
   },
   drawerOpen: {
+    backgroundColor: '#32200A',
     width: drawerWidth,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
@@ -46,6 +52,7 @@ const useStyles = makeStyles(theme => ({
     }),
   },
   drawerClose: {
+    backgroundColor: '#32200A',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -56,6 +63,9 @@ const useStyles = makeStyles(theme => ({
       width: theme.spacing(9) + 1,
     },
   },
+  chevron: {
+    color: 'white'
+  },
   toolbar: {
     display: 'flex',
     alignItems: 'center',
@@ -65,12 +75,15 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     flexGrow: 1,
+    backgroundImage: `url(${Background})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'bottom',
     padding: theme.spacing(3),
   },
 }));
 
 const routes = {
-  '/': 'Dashboard'
+  '/': 'Destination'
 };
 
 const NavigationBar = props => {
@@ -127,7 +140,7 @@ const NavigationBar = props => {
       >
         <div className={classes.toolbar}>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRight /> : <ChevronLeft />}
+            {theme.direction === 'rtl' ? <ChevronRight className={classes.chevron} /> : <ChevronLeft className={classes.chevron} />}
           </IconButton>
         </div>
         <Divider />

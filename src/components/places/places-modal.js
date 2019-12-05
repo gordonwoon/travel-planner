@@ -32,6 +32,9 @@ const useStyles = makeStyles(theme => ({
   },
   menu: {
     width: 200
+  },
+  button: {
+    float: 'right'
   }
 }));
 
@@ -58,7 +61,7 @@ const activityType = [
   }
 ];
 
-const PlannerModal = ({ open, handleClose, id }) => {
+const PlacesModal = ({ open, handleClose, id }) => {
   const classes = useStyles();
   const [name, setName] = React.useState('');
   const [expense, setExpense] = React.useState('');
@@ -205,7 +208,7 @@ const PlannerModal = ({ open, handleClose, id }) => {
               color="primary"
               className={classes.button}
             >
-              Submit
+              Add
             </Button>
           </form>
         </div>
@@ -214,4 +217,4 @@ const PlannerModal = ({ open, handleClose, id }) => {
   );
 };
 
-export default PlannerModal;
+export default PlacesModal;

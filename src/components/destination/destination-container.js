@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Fab, Icon } from '@material-ui/core';
-import { DashboardItem, DashboardModal } from './';
+import { DestinationItem, DestinationModal } from '.';
 import { useQuery } from '@apollo/react-hooks';
 import FETCH_DESTINATIONS from '../../queries/fetch-destinations';
 
@@ -20,7 +20,7 @@ const defaultState = {
   open: false
 }
 
-const DashboardContainer = props => {
+const DestinationContainer = props => {
   const classes = useStyles();
   const [state, setState] = React.useState(defaultState);
   const { loading, error, data } = useQuery(FETCH_DESTINATIONS);
@@ -36,7 +36,7 @@ const DashboardContainer = props => {
       <Grid className={classes.root} container spacing={2} >
         {data.destinations && data.destinations.map((item, key) => (
           <Grid item xs={12} md={6} key={key} >
-            <DashboardItem
+            <DestinationItem
               id={item.id}
               name={item.name}
               places={item.places}
@@ -46,7 +46,7 @@ const DashboardContainer = props => {
         <Fab color="secondary" className={classes.addButton} onClick={handleOpen}>
           <Icon>add</Icon>
         </Fab>
-        <DashboardModal
+        <DestinationModal
           open={state.open}
           handleClose={handleClose}
         />
@@ -54,4 +54,4 @@ const DashboardContainer = props => {
   );
 }
 
-export default DashboardContainer;
+export default DestinationContainer;

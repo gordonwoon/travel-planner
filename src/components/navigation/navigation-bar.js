@@ -83,7 +83,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const routes = {
-  '/': 'Destination'
+  '/': 'Home',
+  '/destination': 'Destination'
 };
 
 const NavigationBar = props => {

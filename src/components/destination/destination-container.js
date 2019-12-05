@@ -4,6 +4,7 @@ import { Grid, Fab, Icon } from '@material-ui/core';
 import { DestinationItem, DestinationModal } from '.';
 import { useQuery } from '@apollo/react-hooks';
 import FETCH_DESTINATIONS from '../../queries/fetch-destinations';
+import PlaneLoader from '../loader/plane';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -30,7 +31,7 @@ const DestinationContainer = props => {
   const handleClose = () => {
     setState({ open: false })
   }
-  if (loading) return 'Loading...';
+  if (loading) return <PlaneLoader />;
   if (error) return `Error! ${error.message}`;
   return (
       <Grid className={classes.root} container spacing={2} >

@@ -1,3 +1,31 @@
+@keyframes a {
+  0% {
+      transform: rotate(0deg)
+  }
+
+  to {
+      transform: rotate(1turn)
+  }
+}
+
+@keyframes b {
+  40% {
+      transform: rotate(0deg)
+  }
+
+  50% {
+      transform: rotate(-2deg)
+  }
+
+  60% {
+      transform: rotate(2deg)
+  }
+
+  90% {
+      transform: rotate(0deg)
+  }
+}
+
 
 .plane-loader {
   margin: 0 auto;
